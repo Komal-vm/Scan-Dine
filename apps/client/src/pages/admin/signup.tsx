@@ -17,6 +17,7 @@ export default function Home() {
 
       localStorage.setItem("token", data.token);
       console.log("Signup successful ✅");
+      router.push(`/admin/dashboard`);
       
     } catch (err) {
       console.error("Signup failed ❌", err);

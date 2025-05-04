@@ -110,6 +110,20 @@ app.get('/admin/generate-qr', authenticateJwt, async (req, res) => {
   }
 });
 
+//QR for chef
+app.get('/admin/generate-qr-chef', authenticateJwt, async (req, res) => {
+  try {
+    const restaurantId = req.user._id; // admin's own ID
+    const qrUrl = `http://localhost:3000/chef/signup/${restaurantId}`;
+
+    const qrCodeDataUrl = await QRCode.toDataURL(qrUrl);
+    res.json({ qrCode: qrCodeDataUrl }); // base64 image that frontend can display
+  } catch (err) {
+    res.status(500).json({ message: "Error generating QR", error: err.message });
+  }
+});
+
+
 // User Signup
 app.post('/user/signup/:restaurantId', async (req, res) => {
   const { username, password } = req.body;

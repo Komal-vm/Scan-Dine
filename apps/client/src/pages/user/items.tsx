@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 interface ItemType {
   _id: string;
@@ -15,6 +16,7 @@ export default function UserItems() {
   const [cart, setCart] = useState<ItemType[]>([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -64,12 +66,23 @@ export default function UserItems() {
     }
   };
 
+  const Redirect = async ()=>{
+           router.push(`/user/purchasedItems`);
+  }
+
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
-      <h1 className="text-3xl font-bold text-center mb-8">Restaurant Menu</h1>
-
+     <div className="flex items-center justify-between mb-8">
+  <h1 className="text-3xl font-bold">Restaurant Menu</h1>
+  <button
+    onClick={Redirect}
+    className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
+  >
+    View Order
+  </button>
+</div>
       {message && (
         <div className="text-center text-lg font-medium text-green-600 mb-6">
           {message}
@@ -109,7 +122,7 @@ export default function UserItems() {
           ))}
         </div>
       )}
-
+        
       {cart.length > 0 && (
         <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg p-4 flex items-center justify-between z-50">
           <div>
@@ -123,6 +136,8 @@ export default function UserItems() {
           >
             Place Order
           </button>
+
+        
         </div>
       )}
     </div>
