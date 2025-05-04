@@ -2,9 +2,9 @@
   "name": "scan-dine",
   "private": true,
   "scripts": {
-    "dev": "nodemon src/index.js",
+    "dev": "nodemon /index.js",
   "build": "echo 'no build step needed'",
-  "start": "node src/index.js",
+  "start": "node /index.js",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
