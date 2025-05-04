@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const QRCode = require('qrcode');
+require('dotenv').config();
 
 const Admin = require('./models/Admin');
 const User = require('./models/User');
@@ -14,9 +15,10 @@ const SECRET = "my secret";
 
 app.use(express.json());
 app.use(cors());
+const mongoURL = process.env.MONGO_URL;
 
 // MongoDB Connection
-mongoose.connect('mongodb+srv://komalchakradhar123:komal2025@cluster1.hgkjt.mongodb.net/Restaurant', {
+mongoose.connect(mongoURL , {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
