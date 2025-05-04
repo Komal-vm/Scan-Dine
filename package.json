@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "nodemon /index.js",
   "build": "echo 'no build step needed'",
-  "start": "node apps/api/index.js",
+  "start": "node index.js",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
