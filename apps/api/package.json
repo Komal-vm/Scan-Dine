@@ -1,10 +1,17 @@
 {
-  "name": "api",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "build": "echo 'no build step needed'"
+    "name": "api",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "dev": "nodemon index.js"
+    },
+    "dependencies": {
+        "express": "*",
+        "jsonwebtoken": "*",
+        "dotenv": "*",
+        "mongoose": "*",
+        "uuid": "*",
+        "cors": "*"
+    }
   }
-}
+  
