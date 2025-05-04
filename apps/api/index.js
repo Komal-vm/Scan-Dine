@@ -12,7 +12,7 @@ const Items = require('./models/Items');
 
 const app = express();
 const SECRET = "my secret";
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';//need to remove local
+const FRONTEND_URL = process.env.FRONTEND_URL;//need to remove local
 app.use(express.json());
 
 app.use(cors({
