@@ -12,9 +12,14 @@ const Items = require('./models/Items');
 
 const app = express();
 const SECRET = "my secret";
-
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
 app.use(express.json());
-app.use(cors());
+
+app.use(cors({
+  origin: FRONTEND_URL,
+  credentials: true
+}));
+
 const mongoURL = process.env.MONGO_URL;
 
 // MongoDB Connection
@@ -103,7 +108,7 @@ app.put('/admin/updateitem/:itemId',authenticateJwt,async (req, res) => {
 app.get('/admin/generate-qr', authenticateJwt, async (req, res) => {
   try {
     const restaurantId = req.user._id; // admin's own ID
-    const qrUrl = `http://localhost:3000/user/signup/${restaurantId}`;
+    const qrUrl = `${FRONTEND_URL}/user/signup/${restaurantId}`;
 
     const qrCodeDataUrl = await QRCode.toDataURL(qrUrl);
     res.json({ qrCode: qrCodeDataUrl }); // base64 image that frontend can display
@@ -116,7 +121,7 @@ app.get('/admin/generate-qr', authenticateJwt, async (req, res) => {
 app.get('/admin/generate-qr-chef', authenticateJwt, async (req, res) => {
   try {
     const restaurantId = req.user._id; // admin's own ID
-    const qrUrl = `http://localhost:3000/chef/signup/${restaurantId}`;
+    const qrUrl = `${FRONTEND_URL}/chef/signup/${restaurantId}`;
 
     const qrCodeDataUrl = await QRCode.toDataURL(qrUrl);
     res.json({ qrCode: qrCodeDataUrl }); // base64 image that frontend can display
