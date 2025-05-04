@@ -10,12 +10,13 @@ function UpdateItem() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [imageLink, setImageLink] = useState("");
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const handleUpdate = async () => {
     console.log("Trying to update item:", itemId);
     try {
       const response = await axios.put(
-        `http://localhost:4000/admin/updateitem/${itemId}`,
+        `${apiUrl}/admin/updateitem/${itemId}`,
         {
           title,
           description,

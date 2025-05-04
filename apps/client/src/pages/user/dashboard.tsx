@@ -15,12 +15,12 @@ export default function UserDashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   useEffect(() => {
     // Fetch user details
     const fetchUserData = async () => {
       try {
-        const { data } = await axios.get<UserData>("http://localhost:4000/user/me", {
+        const { data } = await axios.get<UserData>("${apiUrl}/user/me", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

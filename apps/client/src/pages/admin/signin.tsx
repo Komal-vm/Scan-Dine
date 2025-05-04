@@ -4,12 +4,15 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 export default function Home() {
+
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
   const handleSignup = async () => {
     try {
-      const { data } = await axios.post("http://localhost:4000/admin/signin", {
+      const { data } = await axios.post(`${apiUrl}/admin/signin`, {
         username: email,
         password: password,
       });

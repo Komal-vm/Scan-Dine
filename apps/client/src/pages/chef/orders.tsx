@@ -17,11 +17,12 @@ interface UserOrder {
 function ChefOrders() {
   const [orders, setOrders] = useState<UserOrder[]>([]);
   const [completedOrders, setCompletedOrders] = useState<number[]>([]); // track by index
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/chef/orders", {
+        const res = await axios.get(`${apiUrl}/chef/orders`, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },

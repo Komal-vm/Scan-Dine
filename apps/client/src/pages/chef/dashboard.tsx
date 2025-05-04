@@ -14,12 +14,13 @@ export default function ChefDashboard() {
   const [chefData, setChefData] = useState<ChefData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     // Fetch chef details
     const fetchChefData = async () => {
       try {
-        const { data } = await axios.get<ChefData>("http://localhost:4000/admin/me", {
+        const { data } = await axios.get<ChefData>(`${apiUrl}/admin/me`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

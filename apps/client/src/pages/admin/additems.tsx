@@ -5,10 +5,11 @@ function AddItem() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [price,setPrice] = useState("")
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:4000/admin/additems", {
+      const response = await fetch(`${apiUrl}/admin/additems`, {
         method: "POST",
         body: JSON.stringify({
           title: title,

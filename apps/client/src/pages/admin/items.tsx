@@ -12,12 +12,13 @@ interface ItemType {
 }
 
 function Items() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [items, setItems] = useState<ItemType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/admin/items", {
+        const response = await axios.get(`${apiUrl}/admin/items`, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },

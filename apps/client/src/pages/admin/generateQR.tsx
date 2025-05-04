@@ -7,11 +7,13 @@ export default function GenerateQR() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   const handleGenerateAdminQR = async () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get("http://localhost:4000/admin/generate-qr", {
+      const res = await axios.get(`${apiUrl}/admin/generate-qr`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -28,7 +30,7 @@ export default function GenerateQR() {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get("http://localhost:4000/admin/generate-qr-chef", {
+      const res = await axios.get(`${apiUrl}/admin/generate-qr-chef`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },

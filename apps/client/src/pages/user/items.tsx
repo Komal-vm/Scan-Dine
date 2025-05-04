@@ -17,11 +17,11 @@ export default function UserItems() {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
   const router = useRouter();
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/user/items", {
+        const res = await axios.get(`${apiUrl}/user/items`, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
@@ -47,7 +47,7 @@ export default function UserItems() {
     try {
       for (const item of cart) {
         await axios.post(
-          `http://localhost:4000/user/items/${item._id}`,
+          `${apiUrl}/user/items/${item._id}`,
           {},
           {
             headers: {

@@ -8,11 +8,11 @@ export default function Home() {
   const { id:restaurantId } = router.query;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const handleSignin = async () => {
     console.log("Restaurant id:", restaurantId);
     try {
-      const { data } = await axios.post(`http://localhost:4000/user/signin/${restaurantId}`, {
+      const { data } = await axios.post(`${apiUrl}/user/signin/${restaurantId}`, {
         username: email,
         password: password,
       });

@@ -10,6 +10,7 @@ type AdminData = {
 };
 
 export default function AdminDashboard() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [username, setUsername] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function AdminDashboard() {
     // Fetch admin username
     const fetchAdminData = async () => {
       try {
-        const { data } = await axios.get<AdminData>("http://localhost:4000/admin/me", {
+        const { data } = await axios.get<AdminData>(`${apiUrl}/admin/me`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

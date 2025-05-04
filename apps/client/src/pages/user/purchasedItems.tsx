@@ -15,11 +15,12 @@ export default function PurchasedItems() {
   const [items, setItems] = useState<ItemType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const fetchPurchasedItems = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/user/purchasedItems", {
+        const res = await axios.get(`${apiUrl}/user/purchasedItems`, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
